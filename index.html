@@ -26,6 +26,17 @@
             align-items: flex-start;
             min-height: 100vh;
             background-image: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            /* منع تحديد النص في كامل صفحة الطالب */
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+        }
+
+        /* السماح بالكتابة وتحديد النص داخل مربعات النصوص فقط */
+        input[type="text"], textarea {
+            -webkit-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
 
         .container {
@@ -284,6 +295,23 @@
                 cheatCount++;
                 alert("⚠️ تحذير: لقد قمت بالخروج من شاشة الاختبار! تم تسجيل هذه المحاولة وإرسالها للمعلم.");
             }
+        });
+
+        // منع النقر الأزر الأيمن (Right Click)
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // منع اختصارات النسخ واللصق من لوحة المفاتيح
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'v' || e.key === 'C' || e.key === 'V')) {
+                e.preventDefault();
+                alert("⚠️ عذراً، خاصية النسخ واللصق غير مسموحة أثناء الاختبار.");
+            }
+        });
+
+        // منع اللصق المباشر بالماوس داخل مربعات الإجابة
+        document.addEventListener('paste', function(e) {
+            e.preventDefault();
+            alert("⚠️ عذراً، يجب عليك كتابة الإجابة بنفسك.");
         });
 
         function showAlert(msg) {
