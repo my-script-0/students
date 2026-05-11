@@ -7,12 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2980b9;
-            --secondary: #27ae60;
+            --primary-color: #900C3F; /* الأحمر القاني */
+            --secondary-color: #D4AF37; /* الذهبي */
             --bg-color: #f4f7f6;
             --card-bg: #ffffff;
             --text-color: #2c3e50;
-            --border-radius: 12px;
+            --border-color: #e5e8e8;
+            --border-radius: 15px; /* حواف عصرية */
         }
 
         body {
@@ -26,17 +27,6 @@
             align-items: flex-start;
             min-height: 100vh;
             background-image: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            /* منع تحديد النص في كامل صفحة الطالب */
-            -webkit-user-select: none; /* Safari */
-            -ms-user-select: none; /* IE 10 and IE 11 */
-            user-select: none; /* Standard syntax */
-        }
-
-        /* السماح بالكتابة وتحديد النص داخل مربعات النصوص فقط */
-        input[type="text"], textarea {
-            -webkit-user-select: text;
-            -ms-user-select: text;
-            user-select: text;
         }
 
         .container {
@@ -44,10 +34,12 @@
             width: 100%;
             max-width: 600px;
             border-radius: var(--border-radius);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            padding: 30px;
-            margin-top: 20px;
-            border-top: 5px solid var(--primary);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 35px 30px;
+            margin-top: 30px;
+            border-top: 5px solid var(--secondary-color); /* شريط علوي ذهبي */
+            border-bottom: 5px solid var(--primary-color); /* شريط سفلي أحمر */
+            box-sizing: border-box;
         }
 
         .header {
@@ -58,15 +50,17 @@
         }
 
         .header h1 {
-            color: var(--primary);
+            color: var(--primary-color);
             margin: 0 0 10px 0;
-            font-size: 24px;
+            font-size: 26px;
+            font-weight: bold;
         }
 
         .header p {
             color: #7f8c8d;
             margin: 0;
-            font-size: 15px;
+            font-size: 16px;
+            font-weight: bold;
         }
 
         .form-group {
@@ -78,128 +72,155 @@
             margin-bottom: 8px;
             font-weight: bold;
             color: #34495e;
+            font-size: 15px;
         }
 
         input[type="text"], select, textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #bdc3c7;
-            border-radius: 8px;
+            padding: 14px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
             box-sizing: border-box;
             font-family: inherit;
             font-size: 16px;
-            transition: 0.3s border-color;
+            transition: 0.3s border-color, 0.3s box-shadow;
+            background-color: #fdfefe;
+            outline: none;
         }
 
         input[type="text"]:focus, select:focus, textarea:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(144, 12, 63, 0.15);
+            background-color: #fff;
         }
 
         .code-input {
-            font-size: 24px !important;
+            font-size: 32px !important;
             text-align: center;
-            letter-spacing: 5px;
+            letter-spacing: 8px;
             font-family: monospace !important;
             font-weight: bold;
             text-transform: uppercase;
-            border: 2px dashed var(--primary) !important;
-            background: #f8fbff;
+            border: 3px dashed var(--secondary-color) !important;
+            background: #fff !important;
+            color: var(--primary-color);
+        }
+        
+        .code-input:focus {
+            border-style: solid !important;
+            border-color: var(--primary-color) !important;
         }
 
         button.btn-primary {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary-color), #60082a);
             color: white;
-            border: none;
+            border: 2px solid var(--secondary-color);
             padding: 15px;
             width: 100%;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
             font-family: inherit;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         button.btn-primary:hover {
-            background-color: #2471a3;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(144, 12, 63, 0.2);
+            filter: brightness(1.1);
         }
 
         button.btn-success {
-            background-color: var(--secondary);
+            background-color: #27ae60;
             color: white;
             border: none;
-            padding: 15px;
+            padding: 16px;
             width: 100%;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
             font-family: inherit;
             margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.2);
         }
 
         button.btn-success:hover {
             background-color: #219653;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.3);
         }
 
         /* تنسيقات الاختبار */
         .question-card {
             background: #fdfefe;
-            border: 1px solid #e5e8e8;
-            border-radius: 8px;
-            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px 20px;
             margin-bottom: 20px;
-            border-right: 4px solid var(--primary);
+            border-right: 5px solid var(--primary-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: 0.3s;
+        }
+        
+        .question-card:hover {
+            box-shadow: 0 4px 12px rgba(144, 12, 63, 0.08);
+            border-right-color: var(--secondary-color);
         }
 
         .question-title {
             font-weight: bold;
             font-size: 18px;
             margin-bottom: 15px;
-            color: #2c3e50;
+            color: var(--primary-color);
+            line-height: 1.5;
         }
 
         .options-container {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .option-label {
             display: flex;
             align-items: center;
-            padding: 10px 15px;
-            background: #f4f6f7;
-            border: 1px solid #d5dbdb;
-            border-radius: 6px;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border: 2px solid #e5e8e8;
+            border-radius: 8px;
             cursor: pointer;
             transition: 0.2s;
+            font-weight: bold;
+            color: #34495e;
         }
 
         .option-label:hover {
-            background: #ebedef;
+            background: #f1f2f2;
+            border-color: #d5dbdb;
         }
 
         .option-label input[type="radio"] {
-            margin-left: 10px;
-            transform: scale(1.2);
+            margin-left: 12px;
+            transform: scale(1.3);
+            accent-color: var(--primary-color);
         }
 
         #loading {
             text-align: center;
             display: none;
-            color: var(--primary);
+            color: var(--primary-color);
             font-weight: bold;
             margin: 20px 0;
+            font-size: 16px;
         }
 
         .alert-box {
             padding: 15px;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-bottom: 20px;
             text-align: center;
             font-weight: bold;
@@ -224,7 +245,7 @@
     <div class="container" id="login-section">
         <div class="header">
             <h1>منصة مِحور - بوابة الاختبارات</h1>
-            <p>أدخل بياناتك وكود الاختبار للبدء</p>
+            <p>أدخل بياناتك ورمز الاختبار (PIN) للبدء</p>
         </div>
 
         <div id="login-alert" class="alert-box alert-error"></div>
@@ -255,8 +276,8 @@
         </div>
 
         <div class="form-group" style="margin-top: 30px;">
-            <label style="text-align: center; color: var(--primary); font-size: 18px;">🔑 كود الاختبار:</label>
-            <input type="text" id="quizCode" class="code-input" placeholder="XXXX" maxlength="10" required>
+            <label style="text-align: center; color: var(--primary-color); font-size: 18px;">🔑 رمز الاختبار (PIN):</label>
+            <input type="text" id="quizCode" class="code-input" placeholder="XXXXX" maxlength="10" required>
         </div>
 
         <button class="btn-primary" id="btn-enter" onclick="fetchQuiz()">دخول للاختبار 🚀</button>
@@ -266,25 +287,25 @@
     <div class="container" id="quiz-section" style="display: none;">
         <div class="header">
             <h1 id="display-quiz-name">عنوان الاختبار</h1>
-            <p>الطالب: <span id="display-student-name" style="font-weight:bold; color:var(--primary);"></span> | الصف: <span id="display-student-class"></span></p>
+            <p>الطالب: <span id="display-student-name" style="font-weight:bold; color:var(--primary-color);"></span> | الصف: <span id="display-student-class" style="font-weight:bold; color:#34495e;"></span></p>
         </div>
 
         <div id="questions-wrapper">
             </div>
 
         <button class="btn-success" id="btn-submit" onclick="submitAnswers()">📤 تسليم الإجابات النهائية</button>
-        <div id="submit-loading" style="display:none; text-align:center; font-weight:bold; margin-top:15px; color:#27ae60;">⏳ جاري إرسال الإجابات للمعلم...</div>
+        <div id="submit-loading" style="display:none; text-align:center; font-weight:bold; margin-top:15px; color:#27ae60; font-size: 16px;">⏳ جاري إرسال الإجابات للمعلم بأمان...</div>
     </div>
 
     <div class="container" id="success-section" style="display: none; text-align: center;">
-        <div style="font-size: 60px; margin-bottom: 20px;">🎉</div>
-        <h2 style="color: var(--secondary);">تم استلام إجاباتك بنجاح!</h2>
-        <p style="color: #7f8c8d; font-size: 16px; line-height: 1.6;">شكراً لك. لقد تم حفظ درجاتك وإرسالها إلى منصة المعلم بشكل آمن.<br>يمكنك إغلاق هذه الصفحة الآن.</p>
+        <div style="font-size: 70px; margin-bottom: 20px;">🎉</div>
+        <h2 style="color: var(--secondary-color); font-size: 28px; margin-bottom: 10px;">تم استلام إجاباتك بنجاح!</h2>
+        <p style="color: #7f8c8d; font-size: 18px; line-height: 1.8; font-weight: bold;">شكراً لك يا بطل.<br>لقد تم حفظ درجاتك وإرسالها إلى منصة المعلم بشكل آمن.<br>يمكنك إغلاق هذه الصفحة الآن.</p>
     </div>
 
     <script>
-        // 🚨🚨🚨 ضع رابط السكربت الخاص بك هنا 🚨🚨🚨
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx-Ehr4wlyzmsh9D6bskXpfQT5_f0LY3nK54TvO7WATgA9RxoycL9b9I2bpQt3tZ-kilw/exec';
+        // 🚨🚨🚨 رابط السكربت الخاص بك 🚨🚨🚨
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbySwBY1zNiHN55KA6UVowKJqCcxEPGGlG8PWTLSQ9aoGGcWbxIzXuNrtpcl21ggajBFCQ/exec';
         
         let currentQuestions = [];
         let cheatCount = 0;
@@ -295,23 +316,6 @@
                 cheatCount++;
                 alert("⚠️ تحذير: لقد قمت بالخروج من شاشة الاختبار! تم تسجيل هذه المحاولة وإرسالها للمعلم.");
             }
-        });
-
-        // منع النقر الأزر الأيمن (Right Click)
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // منع اختصارات النسخ واللصق من لوحة المفاتيح
-        document.addEventListener('keydown', function(e) {
-            if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'v' || e.key === 'C' || e.key === 'V')) {
-                e.preventDefault();
-                alert("⚠️ عذراً، خاصية النسخ واللصق غير مسموحة أثناء الاختبار.");
-            }
-        });
-
-        // منع اللصق المباشر بالماوس داخل مربعات الإجابة
-        document.addEventListener('paste', function(e) {
-            e.preventDefault();
-            alert("⚠️ عذراً، يجب عليك كتابة الإجابة بنفسك.");
         });
 
         function showAlert(msg) {
